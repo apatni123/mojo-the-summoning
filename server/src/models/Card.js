@@ -28,7 +28,7 @@ Card.init({
     },
 }, {
     sequelize: db,
-    modelName: "card"
+    modelName: "Card"
 });
 
 

@@ -25,7 +25,7 @@ Attack.init({
  
 }, {
     sequelize: db,
-    modelName: "attack"
+    modelName: "Attack"
 });
 
 
