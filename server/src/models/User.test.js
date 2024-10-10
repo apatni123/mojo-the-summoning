@@ -19,5 +19,8 @@ describe('User', () => {
     expect(user).toHaveProperty('id')
   })
 
-
+  it('has the correct username', async () => {
+    expect(user.username).toBe('gandalf')
+  })
+  
 })
