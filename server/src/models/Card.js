@@ -1,10 +1,7 @@
-const { db, DataTypes, Model } = require("../db/config"); 
+const { db, DataTypes } = require("../db/config");
 
-// Define the Deck model
-class Card extends Model {}
-
-// Initialize the User model
-Card.init({
+// Define the Card model using .define
+const Card = db.define("Card", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true, // Set primary key 
@@ -12,26 +9,17 @@ Card.init({
     },
     name: {
         type: DataTypes.STRING,
-        
     },
     mojo: {
         type: DataTypes.INTEGER,
-        
     },
     stamina: {
         type: DataTypes.INTEGER,
-        
     },
     imgURL: {
         type: DataTypes.STRING,
-        
     },
-}, {
-    sequelize: db,
-    modelName: "Card"
 });
 
-
-
-// Export the User model
+// Export the Card model
 module.exports = Card;

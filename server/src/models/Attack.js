@@ -1,10 +1,7 @@
-const { db, DataTypes, Model } = require("../db/config"); 
+const { db, DataTypes } = require("../db/config");
 
-// Define the Deck model
-class Attack extends Model {}
-
-// Initialize the User model
-Attack.init({
+// Define the Attack model using .define
+const Attack = db.define("Attack", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true, // Set primary key 
@@ -12,23 +9,14 @@ Attack.init({
     },
     title: {
         type: DataTypes.STRING,
-        
     },
     mojoCost: {
         type: DataTypes.INTEGER,
-        
     },
     staminaCost: {
         type: DataTypes.INTEGER,
-        
     },
- 
-}, {
-    sequelize: db,
-    modelName: "Attack"
 });
 
-
-
-// Export the User model
+// Export the Attack model
 module.exports = Attack;

@@ -1,10 +1,7 @@
-const { db, DataTypes, Model } = require("../db/config"); 
+const { db, DataTypes } = require("../db/config");
 
-// Define the User model
-class User extends Model {}
-
-// Initialize the User model
-User.init({
+// Define the User model using .define
+const User = db.define("User", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true, // Set primary key 
@@ -12,14 +9,8 @@ User.init({
     },
     username: {
         type: DataTypes.STRING,
-        
     },
-}, {
-    sequelize: db,
-    modelName: "User"
 });
-
-
 
 // Export the User model
 module.exports = User;
