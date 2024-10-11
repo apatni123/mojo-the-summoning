@@ -78,15 +78,34 @@ async function seed () {
   ]);
 
   // Create associations between cards and attacks
-  const cardAttackPromises = [];
-  for (const card of createdCards) {
+// Create associations between cards and attacks
+const cardAttackPromises = [];
+
+for (const card of createdCards) {
     const attackCount = randInt(2, 4); // Assign 2-4 random attacks to each card
-    for (let i = 0; i < attackCount; i++) {
-      const j = randInt(0, attacks.length);
-      cardAttackPromises.push(card.addAttack(attacks[j]));
+
+    // Create a copy of attacks to shuffle and select from
+    const availableAttacks = [...attacks];
+
+    // Shuffle availableAttacks
+    for (let i = availableAttacks.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [availableAttacks[i], availableAttacks[j]] = [availableAttacks[j], availableAttacks[i]];
     }
-  }
-  await Promise.all(cardAttackPromises);
+
+    // Select unique attacks
+    const selectedAttacks = availableAttacks.slice(0, attackCount);
+    
+    // Create associations
+    for (const attack of selectedAttacks) {
+        cardAttackPromises.push(card.addAttack(attack));
+    }
+}
+
+await Promise.all(cardAttackPromises);
+
+console.log('Database seeded');
+
 
   console.log('Database seeded')
 }
